@@ -5,7 +5,7 @@ import json
 
 async def handle(request):
     response_obj = {"status": "success"}
-    return web.Response(text=json.dumps(response_obj))
+    return web.Response(text=json.dumps(response_obj), status=200)
 
 async def new_user(request):
     try:
@@ -17,8 +17,13 @@ async def new_user(request):
         response_obj = {"status": "failed", "reason": str(e)}
         return web.Response(text=json.dumps(response_obj), status=500)
 
+async def helloworld(request):
+    response_obj = "Hello world"
+    return web.Response(text=response_obj, status=200)
+
 app = web.Application()
-app.router.add_get("/", handle)
+#app.router.add_get("/", handle)
 app.router.add_get("/user", new_user)
+app.router.add_get("/", helloworld)
 
 web.run_app(app)
