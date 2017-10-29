@@ -11,7 +11,7 @@ async def new_user(request):
     try:
         user = request.query["name"]
         print("Creating new user with name: ", user)
-        response_obj - {"status": "success"}
+        response_obj = {"status": "success"}
         return web.Response(text=json.dumps(response_obj), status=200)
     except Exception as e:
         response_obj = {"status": "failed", "reason": str(e)}
